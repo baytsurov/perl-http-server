@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+
+use IO::Socket;
+
+$server = IO::Socket::INET->new(Proto => 'tcp', LocalPort => '9000', Listen => SOMAXCONN, Reuse => 1);
+die "can't start" unless $server;
+
+sub get(){
+
+}
+
+while($client = $server->accept()){
+ $client->autoflush(1);
+ while(<$client>){
+  print $_;
+ }
+ close $client; 
+}
+
+print "Hellow world\n"
